@@ -9,6 +9,8 @@ var lectureLoaderXhr = new XMLHttpRequest();
 //  /editor/getlecture/(강의 이름) 이라는 URL에 접속해서
 //  응답으로 강의 이름을 받아와야 해요.
 
+console.log(window.location.pathname);
+
 var lectureName = "example1"
 
 function sendCode(){
@@ -37,4 +39,5 @@ userCodeLoaderXhr.onload = function(){
 
 lectureLoaderXhr.onload = function(){
     console.log(lectureLoaderXhr.response);
+    //document.getElementById("").innerHTML = lectureLoaderXhr.response ;
 }
