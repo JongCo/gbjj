@@ -21,8 +21,21 @@ body{
     background-color: var(--theme-alwhite);
 }
 
+div#editor-content-box{
+    display: flex;
+    height: calc(100vh - 30px);
+}
+
+div#lecture-window{
+    float: left;
+    width: 30vw;
+    border-right: 2px solid var(--theme-shadow);
+}
+
 div#code-window{
+    float: left;
     height: 75vh;
+    width: 70vw;
     margin: 5px;
     box-sizing: border-box;
 }
@@ -30,8 +43,8 @@ div#code-window{
 textarea#editor {
     display: block;
     resize: none;
-    width: calc(100vw - 50px);
-    height: calc(50vh);
+    width: calc(100% - 50px);
+    height: calc(50%);
     font-family: 'Courier New', Courier, monospace;
     font-size: 17px;
     margin-bottom: 20px;
