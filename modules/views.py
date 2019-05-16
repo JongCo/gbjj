@@ -79,6 +79,10 @@ def getlecture(lecture_name):
     return "강의가 없습니다."
 
 
+@app.route("/lecture-list", methods=['GET'])
+def lecture_list():
+    return render_template("lecture-list.html")
+
 
 @app.route("/request-test", methods=['POST'])
 def request_test():

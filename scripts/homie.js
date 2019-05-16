@@ -7,11 +7,11 @@ var a = null;
 
 window.onload = function(){
     var xhrObject = new XMLHttpRequest();
-    xhrObject.open("GET", "./home/get");
+    xhrObject.open("GET", "/home/get");
     xhrObject.send();
     xhrObject.onload = function() {
         a = JSON.parse(xhrObject.response);
-        document.getElementById("child-path").innerHTML = xhrObject.response;
+        //document.getElementById("child-path").innerHTML = xhrObject.response;
         for (var i = 0; i < a['listpath'].length; i++){
             element_explorerWindow.appendChild( createElementUserfiles( a['listpath'][i]) );
         }
@@ -29,6 +29,6 @@ function createElementUserfiles( filename ){
 }
 
 function fileLinker( filename ){
-    location.href = "./editor/" + filename.target.title;
+    location.href = "/editor/" + filename.target.title;
 }
 

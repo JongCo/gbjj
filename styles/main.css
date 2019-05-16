@@ -30,6 +30,7 @@ div#lecture-window{
     float: left;
     width: 30vw;
     border-right: 2px solid var(--theme-shadow);
+    background-color: var(--theme-light);
 }
 
 div#code-window{
@@ -90,6 +91,7 @@ li.file-list{
 
 button#new-edit{
     height: 100%;
+    min-height: 40px;
     width: 100px;
     float: right;
     border: 0px;

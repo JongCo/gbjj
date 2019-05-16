@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>예제 홈페이지</title>
@@ -7,19 +8,18 @@
     <body>
         <div id="home-topmenu" class="topmenu">
             <div id="fffuuu">
-                <a href="/lecture-list">강의</a>
                 <p id="work-directory">{{username}}</p>
             </div>
             <button id="new-edit">&lt; 에디터</button>
         </div>
         <div id="explorer-window" class="principle-content">
-            <p id="child-path"></p>
+            <a href="/editor/py01">강의 01</a>
+            <a href="/editor/py02">강의 02</a>
         </div>
         <script>
             document.getElementById("new-edit").onclick = function(){
                 location.href = "/editor"
             }
         </script>
-        <script src="/scripts/homie.js"></script>
     </body>
 </html>
