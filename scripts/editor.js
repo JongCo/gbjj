@@ -9,10 +9,19 @@ var lectureLoaderXhr = new XMLHttpRequest();
 //  /editor/getlecture/(강의 이름) 이라는 URL에 접속해서
 //  응답으로 강의 이름을 받아와야 해요.
 
+var lectureName = "example1"
+
 function sendCode(){
     userCodeLoaderXhr.open("POST", "/request-test");
     userCodeLoaderXhr.send(document.getElementById("editor").value);
 }
+
+function getLecture(){
+    lectureLoaderXhr.open("GET","/editor/getlecture/" + lectureName);
+    lectureLoaderXhr.send();
+}
+
+getLecture();
 
 var count = 0;
 
@@ -24,4 +33,8 @@ function keyFunction(e){
 userCodeLoaderXhr.onload = function(){
     console.log(userCodeLoaderXhr.response);
     labelPrinted.innerHTML = userCodeLoaderXhr.response;
+}
+
+lectureLoaderXhr.onload = function(){
+    console.log(lectureLoaderXhr.response);
 }
