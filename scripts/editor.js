@@ -11,7 +11,9 @@ var lectureLoaderXhr = new XMLHttpRequest();
 
 console.log(window.location.pathname);
 
-var lectureName = "example1"
+var lectureName = "example1";
+
+var testestes = "testestestestest";
 
 function sendCode(){
     userCodeLoaderXhr.open("POST", "/request-test");
