@@ -15,6 +15,7 @@ var lectureName = "example1";
 
 var testestes = "으아아악으악";
 var testestsest = "dfijef";
+var dd = "gg";
 
 function sendCode(){
     userCodeLoaderXhr.open("POST", "/request-test");
