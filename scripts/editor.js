@@ -44,5 +44,5 @@ userCodeLoaderXhr.onload = function(){
 
 lectureLoaderXhr.onload = function(){
     console.log(lectureLoaderXhr.response);
-    //document.getElementById("").innerHTML = lectureLoaderXhr.response ;
+    document.getElementById("lecture-content").innerHTML = lectureLoaderXhr.response ;
 }

@@ -73,7 +73,7 @@ def editor_load(file_name):
 def getlecture(lecture_name):
     d = [{"class_name" : "py01", "content" : "첫번째 강의입니다 안녕안녕"}, {"class_name" : "py02", "content" : "두번째 강의입니다 이건 좀 어려워요"}]
     for item in d:
-        if lecture_name in item:
+        if lecture_name in item["class_name"]:
             return item["content"]
     
     return "강의가 없습니다."
