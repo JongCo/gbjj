@@ -14,6 +14,7 @@ console.log(window.location.pathname);
 var lectureName = "example1";
 
 var testestes = "으아아악으악";
+var testestsest = "dfijef";
 
 function sendCode(){
     userCodeLoaderXhr.open("POST", "/request-test");
