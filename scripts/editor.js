@@ -5,6 +5,9 @@ buttonSubmit.addEventListener("click", sendCode);
 
 var userCodeLoaderXhr = new XMLHttpRequest();
 var lectureLoaderXhr = new XMLHttpRequest();
+//  위에 lectureLoader가 
+//  /editor/getlecture/(강의 이름) 이라는 URL에 접속해서
+//  응답으로 강의 이름을 받아와야 해요.
 
 function sendCode(){
     userCodeLoaderXhr.open("POST", "/request-test");

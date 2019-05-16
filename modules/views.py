@@ -69,6 +69,11 @@ def editor_load(file_name):
     return render_template("code-edit.html", file_name=file_name)
 
 
+@app.route("/editor/getlecture/<string:lecture_name>", methods=['GET'])
+def getlecture(lecture_name):
+    return lecture_name
+
+
 
 @app.route("/request-test", methods=['POST'])
 def request_test():
