@@ -13,7 +13,7 @@ console.log(window.location.pathname);
 
 var lectureName = "example1";
 
-var testestes = "testestestestest";
+var testestes = "으아아악으악";
 
 function sendCode(){
     userCodeLoaderXhr.open("POST", "/request-test");
