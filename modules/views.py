@@ -109,21 +109,39 @@ def test_1():
 
 
 
-@app.route("/singup", methods=['POST'])
-def singup():
+@app.route("/signup/veri", methods=['POST'])
+def singup_exec():
     '''
     회원가입을 위해 회원 정보를 가져와 처리하는 Post주소
 
     아이디, 비번, 이름 데이터를 얻어옴
     '''
-    _id = request.form['inputName']
-    _pwd = request.form['inputPassword']
-    _name = request.form['inputName']
+    _id = request.form['signupId']
+    _pwd = request.form['signupPwd']
+    _name = request.form['signupName']
 
     if _id and _pwd and _name:
         return json.dumps({'html':'<span>good</span>'})
     else:
         return json.dumps({'html':'<span>not good</span>'})
+
+
+@app.route("/signup", methods=['GET'])
+def signup():
+    '''
+    회원가입 페이지
+    '''
+    '''
+    if session['username']:
+        return render_template("already-login.html")
+    else:
+        return render_template("signup.html")
+    '''
+    try:
+        if session['username']:
+            return render_template("already-login.html")
+    except KeyError:
+        return render_template("signup.html")
 
 
 

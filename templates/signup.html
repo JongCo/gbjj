@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ㅎㅎ</title>
+        <link href="https://fonts.googleapis.com/css?family=Kirang+Haerang" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styles/main.css" />
+        <link rel="stylesheet" type="text/css" href="styles/login.css" />
+    </head>
+
+    <body>
+        <div id="login-align">
+            <form id="login-window" action="signup/veri" method="POST">
+                <p class="login-text">ID</p>
+                <input id="login-box" class="login-box" type="text" placeholder="ID" name="signupId"/>
+                <p class="login-text">Password</p>
+                <input id="pwd-box" class="login-box" type="password" placeholder="PASSWORD" name="signupPwd"/>
+                <p id="caution-p" class="login-text">{{caution_str}}</p>
+                <p class="login-text">Nickname</p>
+                <input id="login-box" class="login-box" type="text" placeholder="Nickname" name="signupName"/>
+                <ul class="fl-left">
+                    <li class="fl-left">
+                        <label><input type="radio" name="student">학생</label>
+                    </li>
+                    <li class="fl-left">
+                        <label><input type="radio" name="student">교육자</label>
+                    </li>
+                </ul>
+                <input id="login-btn" class="small-btn" type="submit" value="SIGN UP"/>
+            </form>
+        </div>
+    </body>
+</html>
