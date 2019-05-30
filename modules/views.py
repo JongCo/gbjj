@@ -73,8 +73,18 @@ def getlecture(lecture_name):
 
 
 @app.route("/lecture-list", methods=['GET'])
-def lecture_list():
+def lecture_page():
     return render_template("lecture-list.html")
+
+
+@app.route("/lecture-list/getlist", methods=['GET'])
+def get_lecture_list():
+    lecture_list = []
+    for child in BASE_DIR.joinpath("resource/lecture").iterdir():
+        lecture_list.append({"file":child.name, "name":str(child.name).split('.')[0]})
+
+    final_json = json.dumps(lecture_list)
+    return final_json
 
 
 @app.route("/request-test", methods=['POST'])
@@ -169,17 +179,21 @@ def signup_test():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        if (request.form['logid'], request.form['logpwd']) == ("xn1128", "123456") or \
-           (request.form['logid'], request.form['logpwd']) == ("asdf", "qwer"):
-            session['username'] = request.form['logid']
-            return redirect(url_for("home"))
-        else:
-            return render_template("login.html", caution_str = "회원정보가 일치하지 않습니다.")
+        with open("userdata/userlist.txt",'r') as f:
+            userlist = json.load(f)
+        
+        for item in userlist['userdata']:
+            if (request.form['logid'], request.form['logpwd']) == (item['id'], item['pwd']):
+                session['username'] = request.form['logid']
+                return redirect(url_for("home"))
+
+        return render_template("login.html", caution_str = "회원정보가 일치하지 않습니다.")
 
     return render_template("login.html")
 
 
 
+#------스타일 및 스크립트------
 @app.route("/styles/<path:file>", methods=['GET'])
 def resource_serving(file):
     
@@ -190,7 +204,6 @@ def resource_serving(file):
         return send_file(target_path.open(mode="rb"), attachment_filename=target_path.name)
 
     abort(404)
-
 
 
 
