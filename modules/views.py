@@ -22,6 +22,8 @@ except:
 BASE_DIR = Path(os.getcwd())
 #jc_BASE_DIR = jcPath(BASE_DIR)
 
+
+#------home------
 @app.route("/home", methods=['GET'])
 def home():
     '''
@@ -38,16 +40,6 @@ def home():
 
 
 
-@app.route("/console-output", methods=['GET'])
-def console_output():
-    filepath_dict = {'username':session['username'], 'listpath':[]}
-    for child in BASE_DIR.joinpath('userdata/'+session['username']).iterdir():
-        filepath_dict['listpath'].append(child.name)
-
-    final_str = json.dumps(filepath_dict)
-    return final_str
-
-
 @app.route("/home/get", methods=['GET'])
 def test_response():
     filepath_dict = {'username':session['username'], 'listpath':[]}
@@ -59,6 +51,7 @@ def test_response():
 
 
 
+#------Editor------
 @app.route("/editor", methods=['GET'])
 def editor():
     return render_template("code-edit.html")
@@ -109,23 +102,7 @@ def test_1():
 
 
 
-@app.route("/signup/veri", methods=['POST'])
-def singup_exec():
-    '''
-    회원가입을 위해 회원 정보를 가져와 처리하는 Post주소
-
-    아이디, 비번, 이름 데이터를 얻어옴
-    '''
-    _id = request.form['signupId']
-    _pwd = request.form['signupPwd']
-    _name = request.form['signupName']
-
-    if _id and _pwd and _name:
-        return json.dumps({'html':'<span>good</span>'})
-    else:
-        return json.dumps({'html':'<span>not good</span>'})
-
-
+#------Login & Sign Up------
 @app.route("/signup", methods=['GET'])
 def signup():
     '''
@@ -142,6 +119,50 @@ def signup():
             return render_template("already-login.html")
     except KeyError:
         return render_template("signup.html")
+
+
+
+@app.route("/signup/veri", methods=['POST'])
+def singup_exec():
+    '''
+    회원가입을 위해 회원 정보를 가져와 처리하는 Post주소
+
+    아이디, 비번, 이름 데이터를 얻어옴
+    '''
+    _id = request.form['signupId']
+    _pwd = request.form['signupPwd']
+    _name = request.form['signupName']
+    _prof = request.form['signupProf']
+
+    if _id and _pwd and _name:
+        with open("userdata/userlist.txt",'r') as f:
+            userlist = json.load(f)
+            
+        for item in userlist['userdata']:
+            if _id == item['id']:
+                return "이미 아이디가 사용중입니다."
+        
+        userlist['userdata'].append({"id":_id, "pwd":_pwd, "name":_name, "prof":_prof})
+
+        with open("userdata/userlist.txt",'w') as f:
+            json.dump(userlist, f)
+
+        return _id + _pwd + _name + _prof
+                    
+    else:
+        return json.dumps({'html':'<span>not good</span>'})
+
+
+
+@app.route("/signup/test", methods=['GET'])
+def signup_test():
+    with open("userdata/userlist.txt") as f:
+        userlist = json.load(f)
+    
+    final_str = ""
+    for item in userlist['userdata']:
+        final_str = final_str + str(item) + "<br>"
+    return final_str
 
 
 

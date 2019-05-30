@@ -12,19 +12,24 @@
             <form id="login-window" action="signup/veri" method="POST">
                 <p class="login-text">ID</p>
                 <input id="login-box" class="login-box" type="text" placeholder="ID" name="signupId"/>
+
                 <p class="login-text">Password</p>
                 <input id="pwd-box" class="login-box" type="password" placeholder="PASSWORD" name="signupPwd"/>
-                <p id="caution-p" class="login-text">{{caution_str}}</p>
+
                 <p class="login-text">Nickname</p>
                 <input id="login-box" class="login-box" type="text" placeholder="Nickname" name="signupName"/>
+
                 <ul class="fl-left">
                     <li class="fl-left">
-                        <label><input type="radio" name="student">학생</label>
+                        <label><input type="radio" name="signupProf" value="stu">학생</label>
                     </li>
                     <li class="fl-left">
-                        <label><input type="radio" name="student">교육자</label>
+                        <label><input type="radio" name="signupProf" value="prof">교육자</label>
                     </li>
                 </ul>
+                
+                <p id="caution-p" class="login-text">{{caution_str}}</p>
+                
                 <input id="login-btn" class="small-btn" type="submit" value="SIGN UP"/>
             </form>
         </div>
