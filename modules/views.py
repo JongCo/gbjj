@@ -23,7 +23,30 @@ BASE_DIR = Path(os.getcwd())
 #jc_BASE_DIR = jcPath(BASE_DIR)
 
 
+#서버에 저장되어있는 강의 폴더 목록을 생성함
+def get_file_list(folder_name = "nonnonnonnonnon"):
+    lecture_list = []
+    if folder_name == "nonnonnonnonnon":
+        for child in BASE_DIR.joinpath("resource/lecture").iterdir():
+            lecture_list.append({"file":child.name, "name":str(child.name).split('.')[0], "isdir":Path.is_dir(child)})
+        return lecture_list
+    else:
+        for child in BASE_DIR.joinpath("resource/lecture/", folder_name).iterdir():
+            lecture_list.append({"file":child.name, "name":str(child.name).split('.')[0], "isdir":Path.is_dir(child)})
+        return lecture_list
+
+
+
+
 #------home------
+@app.route("/", methods=['GET'])
+def main_page():
+    if 'username' in session:
+        return redirect(url_for("home"))
+
+    return render_template("titlepage.html")
+
+
 @app.route("/home", methods=['GET'])
 def home():
     '''
@@ -64,12 +87,17 @@ def editor_load(file_name):
 
 @app.route("/editor/getlecture/<string:lecture_name>", methods=['GET'])
 def getlecture(lecture_name):
-    d = [{"class_name" : "py01", "content" : "첫번째 강의입니다 안녕안녕"}, {"class_name" : "py02", "content" : "두번째 강의입니다 이건 좀 어려워요"}]
-    for item in d:
-        if lecture_name in item["class_name"]:
-            return item["content"]
-    
+    for item in get_file_list():
+        if lecture_name in item['name']:
+            with open(BASE_DIR.joinpath("resource/lecture/" + item['file'])) as f:
+                return f.read()
+
     return "강의가 없습니다."
+
+#------Lecture Page------
+@app.route("/lecture-list/<string:folder_name>", methods=['GET'])
+def lecture_page_in_folder(folder_name):
+    return render_template("lecture-list.html")
 
 
 @app.route("/lecture-list", methods=['GET'])
@@ -79,11 +107,13 @@ def lecture_page():
 
 @app.route("/lecture-list/getlist", methods=['GET'])
 def get_lecture_list():
-    lecture_list = []
-    for child in BASE_DIR.joinpath("resource/lecture").iterdir():
-        lecture_list.append({"file":child.name, "name":str(child.name).split('.')[0]})
+    final_json = json.dumps(get_file_list())
+    return final_json
 
-    final_json = json.dumps(lecture_list)
+
+@app.route("/lecture-list/getlist/<string:folder>", methods=['GET'])
+def get_lecture_list_in_folder(folder):
+    final_json = json.dumps(get_file_list(folder))
     return final_json
 
 

@@ -60,14 +60,20 @@ textarea#editor {
 }
 
 div.topmenu{
-    display: table;
+    display: table-cell;
     height: 40px;
-    width: 100%;
+    width: 100vw;
     border: 0px;
     border-style: solid;
     border-bottom: 2px solid var(--theme-shadow);
     background: var(--theme-normal);
     margin-bottom: 16px;
+
+    vertical-align: middle;
+}
+
+div#topmenu-text{
+    display: inline;
 }
 
 div#explorer-window{
@@ -89,16 +95,27 @@ li.file-list{
     background-color: var(--theme-normal);
 }
 
-button#new-edit{
+button.topmenu-button{
     height: 100%;
     min-height: 40px;
     width: 100px;
-    float: right;
     border: 0px;
+    border-right: 2px solid var(--theme-alblack);
     background: var(--theme-caution);
 
+    float: right;
     font-size: 18px;
 
+
+}
+
+button#lecture-list-button{
+    animation-name: btn-srk;
+    animation-duration: 0.4s;
+    animation-fill-mode: both;
+}
+
+button#new-edit{
     animation-name: btn-srk;
     animation-duration: 0.4s;
     animation-fill-mode: both;
@@ -110,20 +127,23 @@ button#new-edit:hover{
     animation-fill-mode: both;
 }
 
+button#lecture-list-button:hover{
+    animation-name: btn-ext;
+    animation-duration: 0.1s;
+    animation-fill-mode: both;
+}
+
 button#new-edit:active{
     animation-fill-mode: backwards;
     background: var(--theme-bright);
 }
 
 p#work-directory{
+    display: inline;
     margin: 0px 0px 0px 16px;
     font-size: 20px;
 }
 
-div#fffuuu{
-    display: table-cell;
-    vertical-align: middle;
-}
 
 p.block-p{
     width: 200px;

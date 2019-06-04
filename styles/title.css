@@ -1,0 +1,16 @@
+table, th, td {
+    border: 0px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+h1#title-text {
+    font-size: 120px;
+    text-align: center;
+}
+
+.title-button {
+    border: 2px solid var(--theme-shadow);
+    width: 200px;
+    height: 60px;
+}

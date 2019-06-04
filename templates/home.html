@@ -6,18 +6,19 @@
     </head>
     <body>
         <div id="home-topmenu" class="topmenu">
-            <div id="fffuuu">
-                <a href="/lecture-list">강의</a>
-                <p id="work-directory">{{username}}</p>
-            </div>
-            <button id="new-edit">&lt; 에디터</button>
+            <button class="topmenu-button" id="lecture-list-button">강의</button>
+            <div id="topmenu-text"><p id="work-directory">{{username}}</p></div>
+            <button class="topmenu-button" id="new-edit">에디터</button>
         </div>
         <div id="explorer-window" class="principle-content">
             <p id="child-path"></p>
         </div>
         <script>
             document.getElementById("new-edit").onclick = function(){
-                location.href = "/editor"
+                location.href = "/editor";
+            }
+            document.getElementById("lecture-list-button").onclick = function(){
+                location.href = "/lecture-list";
             }
         </script>
         <script src="/scripts/homie.js"></script>
