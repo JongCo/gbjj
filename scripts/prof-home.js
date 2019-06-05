@@ -1,5 +1,4 @@
 
-
 var presentPathArray = window.location.pathname.split("/");
 var lectureFolder = function(){
     return presentPathArray[presentPathArray.length - 1];
@@ -10,7 +9,7 @@ var element_explorerWindow = document.getElementById("explorer-window");
 
 window.onload = function(){
     var xhrObject = new XMLHttpRequest();
-    if (lectureFolder() == "lecture-list"){
+    if (lectureFolder() == "prof"){
         xhrObject.open("GET", "/lecture-list/getlist");
     } else {
         xhrObject.open("GET", "/lecture-list/getlist/" + lectureFolder());
@@ -47,10 +46,10 @@ function createElementUserfiles( lecture_obj ){
 
 function fileLinker( lecture_obj ){
     console.log(lecture_obj)
-    location.href = "/lecture/" + lectureFolder() + "!" + lecture_obj.target.title;
+    location.href = "/management/" + lectureFolder() + "!" + lecture_obj.target.title;
 }
 
 function folderLinker( lecture_obj ){
     console.log(lecture_obj)
-    location.href = "/lecture-list/" + lecture_obj.target.title;
+    location.href = "/prof/" + lecture_obj.target.title;
 }

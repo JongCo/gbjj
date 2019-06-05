@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Code Editor</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="/styles/main.css" />
+    </head>
+
+    <body>
+        <div id="editor-content-box">
+            <div id="lecture-window" class="editor-window">
+                <div id="lecture-content" class="editor-content"></div>
+            </div>
+            <div id="code-window" class="editor-window">
+                <div id="interfaces">
+                    <button id="runit" class="small-btn">실행</button>
+                    <button id="send" class="small-btn">제출</button>
+                </div>
+                <textarea id="editor" class="text-box">{{file_name}}</textarea>
+                <label id="printed" class="result-label">dd</label>
+            </div>
+        </div>
+        <script src="/scripts/lec-editor.js"></script>
+    </body>
+</html>

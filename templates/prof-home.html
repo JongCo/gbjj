@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>예제 홈페이지</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="/styles/main.css" />
+    </head>
+    <body>
+        <div id="home-topmenu" class="topmenu">
+            <button class="topmenu-button" id="user-file-list-button">파일 목록</button>
+            <button class="topmenu-button" id="lecture-list-button">강의</button>
+            <div id="topmenu-text"><p id="work-directory">{{username}}</p></div>
+            <button class="topmenu-button" id="new-edit">에디터</button>
+        </div>
+        <div id="explorer-window" class="principle-content">
+        </div>
+        <script>
+            document.getElementById("new-edit").onclick = function(){
+                location.href = "/editor";
+            }
+            document.getElementById("lecture-list-button").onclick = function(){
+                location.href = "/lecture-list";
+            }
+        </script>
+        <script src="/scripts/prof-home.js"></script>
+    </body>
+</html>

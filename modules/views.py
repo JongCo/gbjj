@@ -35,6 +35,29 @@ def get_file_list(folder_name = "nonnonnonnonnon"):
             lecture_list.append({"file":child.name, "name":str(child.name).split('.')[0], "isdir":Path.is_dir(child)})
         return lecture_list
 
+def get_user_dict():
+    with open("userdata/userlist.txt") as f:
+        user_dict = json.load(f)
+
+    return user_dict
+
+
+def is_prof(user_id):
+    for item in get_user_dict()['userdata']:
+        if user_id == item['id'] and item['prof'] == 'prof':
+            return True
+
+    return False
+
+
+def get_atd_list(lecture_name:list):
+    atd_dir = BASE_DIR.joinpath("resource", "stu-submit", lecture_name[0], lecture_name[1])
+    atd_list = []
+    for item in atd_dir.iterdir():
+        atd_list.append(item.name)
+
+    return atd_list
+
 
 
 
@@ -56,6 +79,8 @@ def home():
 
     if 'username' in session:
         username = session['username']
+        if is_prof(username):
+            return redirect(url_for("prof_home"))
         return render_template("home.html", username = username, ptype = type(session['username']))
 
     return "You're not logged in. <br><a href = '/login'></b>" + \
@@ -87,10 +112,18 @@ def editor_load(file_name):
 
 @app.route("/editor/getlecture/<string:lecture_name>", methods=['GET'])
 def getlecture(lecture_name):
-    for item in get_file_list():
-        if lecture_name in item['name']:
-            with open(BASE_DIR.joinpath("resource/lecture/" + item['file'])) as f:
-                return f.read()
+    path_list = lecture_name.split("!")
+    print(path_list)
+    if len(path_list) == 2:
+        for item in get_file_list(path_list[0]):
+            if path_list[1] in item['name']:
+                with open(BASE_DIR.joinpath("resource/lecture/" + path_list[0] + "/" + item['file'])) as f:
+                    return f.read()
+    else:
+        for item in get_file_list():
+            if lecture_name in item['name']:
+                with open(BASE_DIR.joinpath("resource/lecture/" + item['file'])) as f:
+                    return f.read()
 
     return "강의가 없습니다."
 
@@ -117,6 +150,21 @@ def get_lecture_list_in_folder(folder):
     return final_json
 
 
+@app.route("/lecture/<string:lecture_name>")
+def lecture_editor_page(lecture_name):
+    return render_template("lecture-code-edit.html")
+
+
+@app.route("/lecture/sendcode/<string:lecture_name>", methods=['POST'])
+def send_lecture_code(lecture_name):
+    lecture_name_list = lecture_name.split("!")
+    with open("resource/stu-submit/" + lecture_name_list[0] + "/" + lecture_name_list[1] + "/" + session['username'] + ".py",'w') as f:
+        f.write(request.data.decode('utf-8'))
+
+    return "success"
+
+
+#------Tests------
 @app.route("/request-test", methods=['POST'])
 def request_test():
     ccv = "작동"
@@ -139,6 +187,55 @@ def request_test():
 def test_1():
     test_list = [0,1,2,3,4,5]
     return render_template("test-temp1.html", test_list = test_list)
+
+
+
+#------Professor Page------
+@app.route("/prof", methods=['GET'])
+def prof_home():
+    if 'username' in session:
+        username = session['username']
+        return render_template("prof-home.html", username=username)
+
+    return "You're not logged in. <br><a href = '/login'></b>" + \
+           "Click here to login</b></a>"
+
+
+
+@app.route("/prof/<string:folder>", methods=['GET'])
+def prof_home_lecture_list(folder):
+    if 'username' in session:
+        username = session['username']
+        return render_template("prof-home.html", username=username)
+
+    return "You're not logged in. <br><a href = '/login'></b>" + \
+           "Click here to login</b></a>"
+
+
+
+@app.route("/management/<string:lecture_name>")
+def lecture_mgr_page(lecture_name):
+    return render_template("prof-lectmgr.html")
+
+
+@app.route("/management/getsend/<string:lecture_name>")
+def get_lecture_send(lecture_name):
+    dir_list = lecture_name.split('!')
+    print(dir_list)
+    atd_list = get_atd_list(dir_list)
+
+    return json.dumps(atd_list)
+
+
+@app.route("/management/check/<string:lecture_name>")
+def attended_check(lecture_name):
+    atd_list = lecture_name.split('!')
+    atd_code_dir = BASE_DIR.joinpath("resource", "stu-submit", atd_list[0], atd_list[1], atd_list[2])
+    with atd_code_dir.open('r') as f:
+        user_code = f.read()
+
+    print(user_code)
+    return render_template("prof-check.html", user_code = user_code)
 
 
 
