@@ -15,4 +15,4 @@ if __name__ == '__main__':
 #이건 다른곳에서 import할 때 서버키는것을 방지하는 것.
 #import하면 안의 코드가 실행되기 때문에 접근을 한정한다.
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
