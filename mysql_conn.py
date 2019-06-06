@@ -19,6 +19,4 @@ def mysql_insert(datas):
         conn.commit()
         print(cursor.lastrowid)
     finally:
-        conn.close()
-
-#aa = mysql_insert(("xxvv@gmail.com", "eieieueur"))    
+        conn.close()  

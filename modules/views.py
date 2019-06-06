@@ -243,7 +243,7 @@ def attended_check(lecture_name):
         user_code = f.read()
 
     print(user_code)
-    return render_template("prof-check.html", user_code = user_code)
+    return render_template("prof-check.html", user_name = atd_list[2].split('.')[0], user_code = user_code)
 
 
 #------yamechat------

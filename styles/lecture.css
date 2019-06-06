@@ -8,7 +8,9 @@
 #student-list-view{
     display: inline-block;
     height: calc(100vh - 20px);
+    width: calc(70vw - 60px);
     padding-left: 30px;
+    background-color: #e7e3d0;
 }
 
 #in-user-number{
@@ -24,4 +26,10 @@
 
 .sended-item{
     border: 3px solid var(--theme-shadow);
+    border-radius: 7px;
+    margin: 6px;
+    background-color: var(--theme-light);
+    list-style: none;
+    width: 200px;
+    height: 36px;
 }
