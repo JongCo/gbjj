@@ -8,7 +8,7 @@
 #student-list-view{
     display: inline-block;
     height: calc(100vh - 20px);
-    width: calc(70vw - 60px);
+    width: calc(70vw - 100px);
     padding-left: 30px;
     background-color: #e7e3d0;
 }
