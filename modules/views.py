@@ -23,6 +23,9 @@ BASE_DIR = Path(os.getcwd())
 #jc_BASE_DIR = jcPath(BASE_DIR)
 
 
+yamechat_list = []
+
+
 #서버에 저장되어있는 강의 폴더 목록을 생성함
 def get_file_list(folder_name = "nonnonnonnonnon"):
     lecture_list = []
@@ -189,6 +192,11 @@ def test_1():
     return render_template("test-temp1.html", test_list = test_list)
 
 
+@app.route("/chattest", methods=['GET'])
+def chat_test():
+    return render_template("yamechat.html")
+
+
 
 #------Professor Page------
 @app.route("/prof", methods=['GET'])
@@ -237,6 +245,27 @@ def attended_check(lecture_name):
     print(user_code)
     return render_template("prof-check.html", user_code = user_code)
 
+
+#------yamechat------
+@app.route("/yamechat/sendchat", methods=['POST'])
+def yamesend():
+    chat_cont = request.data.decode('utf-8')
+    chat_user = session['username']
+    yamechat_list.append({'cont':chat_cont, 'user':chat_user, 'received':[]})
+    print(chat_cont)
+    return "success"
+
+
+@app.route("/yamechat/getchat", methods=['GET'])
+def yameget():
+    chat_user = session['username']
+    get_chat_list = []
+    for item in yamechat_list:
+        if not chat_user in item['received']:
+            item['received'].append(chat_user)
+            get_chat_list.append({"cont":item['cont'], "user":item['user']})
+    
+    return json.dumps(get_chat_list)
 
 
 #------Login & Sign Up------

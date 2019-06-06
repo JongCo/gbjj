@@ -1,0 +1,35 @@
+#chat-window{
+    height: calc(100vh - 60px);
+    width: 230px;
+    padding: 10px;
+}
+
+#chat-cont{
+    overflow: scroll;
+    height: calc(100% - 80px);
+    width: 230px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+
+#chat-send{
+    margin-top: 8px;
+}
+
+#chat-send-input{
+    padding: 4px;
+    width: 222px;
+    display: block;
+    border: 2px solid var(--theme-alblack);
+    border-radius: 5px;
+}
+
+#chat-send-button{
+    margin-top: 8px;
+    padding: 4px;
+    width: 234px;
+    display: block;
+    border: 2px solid var(--theme-alblack);
+    border-radius: 5px;
+    background-color: var(--theme-bright);
+}

@@ -181,3 +181,9 @@ p.block-p{
     75%{ background: linear-gradient(to right, var(--theme-bright) 0.5%, var(--theme-caution) 0.5%);}
     100%{ background: linear-gradient(to right, var(--theme-bright) 0%, var(--theme-caution) 0%);}
 }
+
+
+#yamechat-window{
+    width: 250px;
+    border-left: 2px solid var(--theme-alblack);
+}
