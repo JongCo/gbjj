@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>공부점점에 오신걸 환영합니다!</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="/styles/main.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="/styles/title.css" />
+    </head>
+    <body>
+        <div>
+            <h1 id="title-text">공부점점</h1>
+        </div>
+        <div>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <button class="title-button" id="button-login">로그인</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="title-button" id="button-signup">회원가입</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            document.getElementById("button-login").onclick = function(){
+                location.href = "/login";
+            }
+            document.getElementById("button-signup").onclick = function(){
+                location.href = "/signup";
+            }
+        </script>
+    </body>
+</html>

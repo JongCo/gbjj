@@ -1,0 +1,35 @@
+#summary-view{
+    float: left;
+    border-right: 2px solid var(--theme-alblack);
+    width: 30vw;
+    height: calc(100vh - 20px);
+}
+
+#student-list-view{
+    display: inline-block;
+    height: calc(100vh - 20px);
+    width: calc(70vw - 60px);
+    padding-left: 30px;
+    background-color: #e7e3d0;
+}
+
+#in-user-number{
+    display: block;
+    margin-top: 20px;
+    border: 2px solid var(--theme-shadow);
+    padding: 5px;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.sended-item{
+    border: 3px solid var(--theme-shadow);
+    border-radius: 7px;
+    margin: 6px;
+    background-color: var(--theme-light);
+    list-style: none;
+    width: 200px;
+    height: 36px;
+}
